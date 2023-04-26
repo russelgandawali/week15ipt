@@ -1,6 +1,6 @@
 <?php
 use App\Models\Product;
-
+use App\http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,15 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view ('products',[
-        'heading'=> 'Russ Tech Store',
-     'products' => Product::all()
+//list all products
+Route::get('/', [ProductController::class,'index']);
 
-]);
-});
-Route::get('/product/{product}', function(Product $product){
-    return view('product',[
-        'product' => $product
-    ]);
-});
+//show single product
+Route::get('/product/{product}', [ProductController::class, 'show']);
+
+//show create form
+Route::get('/products/create',[ProductController::class,'create']);
+
+//save form
+Route::post('/products', [ProductController::class, 'store']);
+
+?>
