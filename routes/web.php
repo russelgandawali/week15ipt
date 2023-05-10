@@ -27,4 +27,12 @@ Route::get('/products/create',[ProductController::class,'create']);
 //save form
 Route::post('/products', [ProductController::class, 'store']);
 
+//delete record 
+Route::delete('products/{product}', [ProductController::class, 'destroy']);
+
+//update form 
+Route::get('product/{product}/edit',[ProductController::class, 'edit']);
+
+//save update form 
+Route::put('products/{product}', [ProductController::class, 'update']);
 ?>

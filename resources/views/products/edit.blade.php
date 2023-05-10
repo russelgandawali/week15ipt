@@ -1,11 +1,12 @@
 <x-layout>
-  <h1>New Product Form </h1>
-  <form method="POST" action="/products" enctype="multipart/form-data">
+  <h1>Update Product Form | {{$product->name}}</h1>
+  <form method="POST" action="/products/{{$product->id}}" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
     <div class="row mb-3">
       <label for="name" class="col-sm-2 col-form-label">Name</label>
       <div class="col-sm-10">
-        <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" >
+        <input type="text" name="name" value="{{$product->name}}" class="form-control @error('name') is-invalid @enderror" >
         <div class="text-danger ">
           @error('name')
             {{ $message }}
@@ -16,7 +17,7 @@
     <div class="row mb-3">
       <label for="unit" class="col-sm-2 col-form-label">Unit</label>
       <div class="col-sm-10">
-        <input type="text" name="unit" value="{{ old('unit') }}" class="form-control @error('unit') is-invalid @enderror" >
+        <input type="text" name="unit" value="{{ $product->unit }}" class="form-control @error('unit') is-invalid @enderror" >
         <div class="text-danger ">
           @error('unit')
             {{ $message }}
@@ -27,7 +28,7 @@
     <div class="row mb-3">
       <label for="unitPrice" class="col-sm-2 col-form-label">Unit Price</label>
       <div class="col-sm-10">
-        <input type="text" name="unitPrice" value="{{ old('unitPrice') }}" class="form-control @error('unitPrice') is-invalid @enderror" >
+        <input type="text" name="unitPrice" value="{{ $product->unitPrice }}" class="form-control @error('unitPrice') is-invalid @enderror" >
         <div class="text-danger ">
           @error('unitPrice')
             {{ $message }}
@@ -39,24 +40,14 @@
       <label for="category" class="col-sm-2 col-form-label">Category</label>
       <div class="col-sm-10">
         <select name="category" class="form-control">
-          <option value="Vegetable">Vegetable</option>
-          <option value="Meat">Meat</option>
-          <option value="Fish">Fish</option>
+          <option {{$product->category == 'Vegetable' ? 'selected':''}} value="Vegetable">Vegetable</option>
+          <option {{$product->category == 'Meat' ? 'selected':''}} value="Meat">Meat</option>
+          <option {{$product->category == 'Fish' ? 'selected':''}} value="Fish">Fish</option>
         </select>
       </div>
     </div>
-    
-    <div class="row mb-3">
-      <label for="image" class="col-sm-2 col-form-label">Image</label>
-      <div class="col-sm-10">
-        <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" >
-        <div class="text-danger ">
-          @error('image')
-            {{ $message }}
-          @enderror
-        </div>
       </div>
     </div>
-    <button class="btn btn-primary">Save</button>
+    <button class="btn btn-primary">Update</button>
   </form>
 </x-layout>
