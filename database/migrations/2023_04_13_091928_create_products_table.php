@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('unit',300)-> nullable();
             $table->decimal('unitPrice',8 , 2);
             $table->string('category',50);
-            $table->timestamps();
+            $table->text('description')->nullable();
+            $table->text('image_url')->nullable();
+            $table->timestamps();   
         });
     }
 

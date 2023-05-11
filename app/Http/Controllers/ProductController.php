@@ -47,6 +47,11 @@ return view ('products.create');
             'name'=>  'required'
              ]);
 
+             if($request->hasFile('image_url')){
+              $formFields['image_url'] = $request->file('image_url')->store('images', 'public');
+
+             }
+
              $product->update($formFields);
              return redirect('/')->with('success','Product updated successfully!');
 

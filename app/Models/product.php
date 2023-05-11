@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class product extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'unit', 'unitPrice', 'category'];
+    protected $fillable = ['name', 'unit', 'unitPrice', 'category', 'image_url', 'description'];
 
     public function getCategory(){
         if($this->category == 'Meat') return 'FRESH MEAT';
