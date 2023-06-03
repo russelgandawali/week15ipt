@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 150);
+            $table->string('name', 150); // varchar(150)
             $table->string('unit',300)-> nullable();
-            $table->decimal('unitPrice',8 , 2);
+            $table->decimal('unitPrice',8 , 2); // decimal(8,2)
             $table->string('category',50);
             $table->text('description')->nullable();
             $table->text('image_url')->nullable();
-            $table->timestamps();   
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
+            $table->timestamps(); //createAt, updateAt  
+            //create table commands in my sql
         });
     }
 
